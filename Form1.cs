@@ -9,8 +9,11 @@ namespace zoom_app_deneme_4
     {
         private Image originalImage;
         private int zoomFactor = 2;
-        private bool isUnlocked = true;
+        private bool isUnlocked = true; // Open Locku sağlayan yer
         private Label colorLabel;
+        private int R;
+        private int G;
+        private int B;
 
         public Form1()
         {
@@ -40,6 +43,7 @@ namespace zoom_app_deneme_4
             colorLabel.Dock = DockStyle.Right;
             colorLabel.Text = "Pixel Rengi: ";
             this.Controls.Add(colorLabel);
+        
         }
 
         private void ToggleLockButton_Click(object sender, EventArgs e)
@@ -89,15 +93,18 @@ namespace zoom_app_deneme_4
             int zoomWidth = pictureBox1.Width / zoomFactor;
             int zoomHeight = pictureBox1.Height / zoomFactor;
 
+            // Sol clickle zoom
+            if (e.Button == MouseButtons.Left)
             {
                 Rectangle zoomRect = new Rectangle(e.X - zoomWidth / 2, e.Y - zoomHeight / 2, zoomWidth, zoomHeight);
 
                 // Sınır kontrolleri
-                zoomRect.X = Math.Max(0, zoomRect.X);
-                zoomRect.Y = Math.Max(0, zoomRect.Y);
-                zoomRect.Width = Math.Min(originalImage.Width - zoomRect.X, zoomWidth);
-                zoomRect.Height = Math.Min(originalImage.Height - zoomRect.Y, zoomHeight);
+                if (zoomRect.X < 0) zoomRect.X = 0;
+                if (zoomRect.Y < 0) zoomRect.Y = 0;
+                if (zoomRect.Right > originalImage.Width) zoomRect.X = originalImage.Width - zoomWidth;
+                if (zoomRect.Bottom > originalImage.Height) zoomRect.Y = originalImage.Height - zoomHeight;
 
+                // Zoom yapılmış resmi oluştur
                 Bitmap zoomedImage = new Bitmap(zoomWidth * zoomFactor, zoomHeight * zoomFactor);
 
                 using (Graphics g = Graphics.FromImage(zoomedImage))
@@ -108,6 +115,7 @@ namespace zoom_app_deneme_4
                 pictureBox1.Image = zoomedImage;
                 pictureBox1.Size = zoomedImage.Size;
             }
+            // Sağ tıklayınca eski haline dönecek
             else if (e.Button == MouseButtons.Right)
             {
                 pictureBox1.Image = originalImage;
@@ -119,22 +127,21 @@ namespace zoom_app_deneme_4
         {
             if (originalImage == null) return;
 
-            if (e.X >= 0 && e.Y >= 0 && e.X < originalImage.Width && e.Y < originalImage.Height)
-            if (e.Button == MouseButtons.Left)
+            Bitmap bmp = new Bitmap(originalImage);
+            if (e.X < bmp.Width && e.Y < bmp.Height)
             {
-                Bitmap bmp = new Bitmap(originalImage);
                 Color pixelColor = bmp.GetPixel(e.X, e.Y);
                 colorLabel.Text = $"Pixel Rengi: R={pixelColor.R} , G={pixelColor.G}, B={pixelColor.B}";
-
-                //bunun sayesinde keysler arasında for döngüsü kuruluyor. bu fr döngüsündeki değerler ve pixelin RGB değerleri karşılaştırılıyor aynıysa renkin kodu colorlabela gidiyor farklıysa RGB değerleri yazıyor.
-                foreach (Color color in ColourVaries.colorNames.Keys)
+                
+                foreach(Color color in ColourVaries.colorNames.Keys)
                 {
-                    if (pixelColor.R == color.R && pixelColor.G == color.G && pixelColor.B == color.B)
+                    if(pixelColor == color)
                     {
-                        colorLabel.Text = $"{color.Name}";
-                        break;
+                        colorLabel.Text=$"{color.Name}";
                     }
                 }
+                
+
             }
         }
     }
