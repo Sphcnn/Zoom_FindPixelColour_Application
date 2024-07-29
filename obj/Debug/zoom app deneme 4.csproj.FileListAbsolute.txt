@@ -1,0 +1,10 @@
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\bin\Debug\zoom app deneme 4.exe.config
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\bin\Debug\zoom app deneme 4.exe
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\bin\Debug\zoom app deneme 4.pdb
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\obj\Debug\zoom app deneme 4.csproj.AssemblyReference.cache
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\obj\Debug\zoom_app_deneme_4.Form1.resources
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\obj\Debug\zoom_app_deneme_4.Properties.Resources.resources
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\obj\Debug\zoom app deneme 4.csproj.GenerateResource.cache
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\obj\Debug\zoom app deneme 4.csproj.CoreCompileInputs.cache
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\obj\Debug\zoom app deneme 4.exe
+C:\Users\batus\source\repos\zoom app deneme 4\zoom app deneme 4\obj\Debug\zoom app deneme 4.pdb
